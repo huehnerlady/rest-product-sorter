@@ -1,0 +1,202 @@
+[
+  {
+    "_id": "QP00DE000CD5DET7",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD5DET7",
+      "wkn": "CD5DET",
+      "vwd": "CD5DET.STG"
+    },
+    "figures": {
+      "sideYield": 0.69441667666308,
+      "sideYieldPa": 2.5095256136834
+    }
+  },
+  {
+    "_id": "QP00DE000CD6TH58",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6TH58",
+      "wkn": "CD6TH5",
+      "vwd": "CD6TH5.EUWAX"
+    },
+    "figures": {
+      "sideYield": 0.12515644555695,
+      "sideYieldPa": 0.70280157889672
+    }
+  },
+  {
+    "_id": "QP00DE000CD6TH66",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6TH66",
+      "wkn": "CD6TH6",
+      "vwd": "CD6TH6.EUWAX"
+    },
+    "figures": {
+      "sideYield": 0.35743744844652,
+      "sideYieldPa": 2.0071487489689
+    }
+  },
+  {
+    "_id": "QP00DE000CD6TH74",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6TH74",
+      "wkn": "CD6TH7",
+      "vwd": "CD6TH7.EUWAX"
+    },
+    "figures": {
+      "sideYield": 0.73509392866866,
+      "sideYieldPa": 4.1278351379086
+    }
+  },
+  {
+    "_id": "QP00DE000CD6TH82",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6TH82",
+      "wkn": "CD6TH8",
+      "vwd": "CD6TH8.EUWAX"
+    },
+    "figures": {
+      "sideYield": 1.3333333333333,
+      "sideYieldPa": 7.4871794871795
+    }
+  },
+  {
+    "_id": "QP00DE000CD6TH90",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6TH90",
+      "wkn": "CD6TH9",
+      "vwd": "CD6TH9.EUWAX"
+    },
+    "figures": {
+      "sideYield": 1.1640798226164,
+      "sideYieldPa": 2.7236483029166
+    }
+  },
+  {
+    "_id": "QP00DE000CD6THA4",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6THA4",
+      "wkn": "CD6THA",
+      "vwd": "CD6THA.EUWAX"
+    },
+    "figures": {
+      "sideYield": 1.8161805173363,
+      "sideYieldPa": 4.2493967232547
+    }
+  },
+  {
+    "_id": "QP00DE000CD6THB2",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6THB2",
+      "wkn": "CD6THB",
+      "vwd": "CD6THB.EUWAX"
+    },
+    "figures": {
+      "sideYield": 2.66108334459,
+      "sideYieldPa": 6.226252697278
+    }
+  },
+  {
+    "_id": "QP00DE000CD6THC0",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6THC0",
+      "wkn": "CD6THC",
+      "vwd": "CD6THC.EUWAX"
+    },
+    "figures": {
+      "sideYield": 3.6478664692422,
+      "sideYieldPa": 8.5350721876499
+    }
+  },
+  {
+    "_id": "QP00DE000CD6THD8",
+    "derived": {
+      "issuer": {
+        "name": "Commerzbank AG"
+      },
+      "underlying": {
+        "name": "BMW AG"
+      }
+    },
+    "ids": {
+      "isin": "DE000CD6THD8",
+      "wkn": "CD6THD",
+      "vwd": "CD6THD.EUWAX"
+    },
+    "figures": {
+      "sideYield": 3.0786146234195,
+      "sideYieldPa": 4.5493697876441
+    }
+  }
+]

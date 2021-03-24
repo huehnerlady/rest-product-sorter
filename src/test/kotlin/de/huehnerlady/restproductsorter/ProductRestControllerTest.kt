@@ -8,9 +8,12 @@ import io.mockk.verify
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType.APPLICATION_JSON
+import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.multipart
 import org.springframework.test.web.servlet.post
 import java.math.BigDecimal
+
 
 @WebMvcTest
 class ProductRestControllerTest : FreeSpec() {
@@ -26,52 +29,101 @@ class ProductRestControllerTest : FreeSpec() {
 
     init {
 
-        "should handle empty list"{
-            mockMvc.post("/products") {
-                contentType = APPLICATION_JSON
-                content = "[]"
-                accept = APPLICATION_JSON
-            }.andExpect {
-                status { isOk() }
-                content { contentType(APPLICATION_JSON) }
-                content { json("[]") }
+        "products as json" - {
+            "should handle empty list"{
+                mockMvc.post("/products") {
+                    contentType = APPLICATION_JSON
+                    content = "[]"
+                    accept = APPLICATION_JSON
+                }.andExpect {
+                    status { isOk() }
+                    content { contentType(APPLICATION_JSON) }
+                    content { json("[]") }
+                }
             }
-        }
 
-        "should call productService"{
-            val expectedProducts = listOf(
-                InputProduct(
-                    derived = Derived(Issuer("issuerName"), Underlying("underlyingName")),
-                    ids = Ids("isin"),
-                    figures = Figures(sideYieldPa = BigDecimal("123.45"))
+            "should call productService"{
+                val expectedProducts = listOf(
+                    InputProduct(
+                        derived = Derived(Issuer("issuerName"), Underlying("underlyingName")),
+                        ids = Ids("isin"),
+                        figures = Figures(sideYieldPa = BigDecimal("123.45"))
+                    )
                 )
-            )
-            mockMvc.post("/products") {
-                contentType = APPLICATION_JSON
-                content = expectedProducts.toJson()
-                accept = APPLICATION_JSON
-            }.andExpect {
-                status { isOk() }
+                mockMvc.post("/products") {
+                    contentType = APPLICATION_JSON
+                    content = expectedProducts.toJson()
+                    accept = APPLICATION_JSON
+                }.andExpect {
+                    status { isOk() }
+                }
+
+                verify(exactly = 1) { productService.sortAndConvert(expectedProducts) }
             }
 
-            verify(exactly = 1) { productService.sortAndConvert(expectedProducts) }
+            "should return response from productService"{
+                val expectedResponse = listOf(Product("id", "someName", "someIssuer", BigDecimal("1.5678")))
+                every {
+                    productService.sortAndConvert(any())
+                } returns expectedResponse
+                mockMvc.post("/products") {
+                    contentType = APPLICATION_JSON
+                    content = "[]"
+                    accept = APPLICATION_JSON
+                }.andExpect {
+                    status { isOk() }
+                    content { contentType(APPLICATION_JSON) }
+                    content { json(expectedResponse.toJson()) }
+                }
+            }
         }
 
-        "should return response from productService"{
-            val expectedResponse = listOf(Product("id", "someName", "someIssuer", BigDecimal("1.5678")))
-            every{
-                productService.sortAndConvert(any())
-            } returns expectedResponse
-            mockMvc.post("/products") {
-                contentType = APPLICATION_JSON
-                content = "[]"
-                accept = APPLICATION_JSON
-            }.andExpect {
-                status { isOk() }
-                content { contentType(APPLICATION_JSON) }
-                content { json(expectedResponse.toJson()) }
+        "products as file" - {
+            "should handle empty list"{
+                val mockedFile = MockMultipartFile("file", "file.json", "application/json", "[]".toByteArray())
+                mockMvc.multipart("/products") {
+                    file(mockedFile)
+                    accept = APPLICATION_JSON
+                }.andDo { print() }
+                    .andExpect {
+                    status { isOk() }
+                    content { contentType(APPLICATION_JSON) }
+                    content { json("[]") }
+                }
             }
 
+            "should call productService"{
+                val expectedProducts = listOf(
+                    InputProduct(
+                        derived = Derived(Issuer("issuerName"), Underlying("underlyingName")),
+                        ids = Ids("isin"),
+                        figures = Figures(sideYieldPa = BigDecimal("123.45"))
+                    )
+                )
+                val mockedFile = MockMultipartFile("file", "file.json", "application/json", expectedProducts.toJson().toByteArray())
+                mockMvc.multipart("/products") {
+                    file(mockedFile)
+                    accept = APPLICATION_JSON
+                }
+
+                verify(exactly = 1) { productService.sortAndConvert(expectedProducts) }
+            }
+
+            "should return response from productService"{
+                val mockedFile = MockMultipartFile("file", "file.json", "application/json", "[]".toByteArray())
+                val expectedResponse = listOf(Product("id", "someName", "someIssuer", BigDecimal("1.5678")))
+                every {
+                    productService.sortAndConvert(any())
+                } returns expectedResponse
+                mockMvc.multipart("/products") {
+                    file(mockedFile)
+                    accept = APPLICATION_JSON
+                }.andExpect {
+                    status { isOk() }
+                    content { contentType(APPLICATION_JSON) }
+                    content { json(expectedResponse.toJson()) }
+                }
+            }
         }
     }
 
