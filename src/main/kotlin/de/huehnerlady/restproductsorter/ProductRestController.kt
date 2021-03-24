@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
-class ProductRestController {
+class ProductRestController(val productService: ProductService) {
 
     @PostMapping(path = ["/products"], consumes = [APPLICATION_JSON_VALUE])
     @ResponseBody
-    fun sortProducts(@RequestBody products: List<Product>): List<Product> {
-        return products
+    fun sortProducts(@RequestBody inputProducts: List<InputProduct>): List<Product> {
+        return productService.sortAndConvert(inputProducts)
     }
 }
