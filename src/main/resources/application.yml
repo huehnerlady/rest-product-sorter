@@ -1,0 +1,6 @@
+
+management.endpoints.web.exposure.include: 'info'
+
+spring:
+  banner:
+    location: classpath:banner.txt
